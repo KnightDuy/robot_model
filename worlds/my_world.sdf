@@ -1,0 +1,176 @@
+<?xml version="1.0" ?>
+<sdf version="1.8">
+  <world name="normal_house">
+    <gravity>0 0 -9.81</gravity>
+    <scene>
+      <ambient>0.45 0.45 0.45 1</ambient>
+      <background>0.75 0.85 0.95 1</background>
+      <shadows>true</shadows>
+    </scene>
+
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>0 -18 10 0.0 0.7 1.57</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+    <light name="house_dir_light" type="directional">
+      <pose>0 0 12 0 0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>120</range>
+        <constant>1</constant>
+        <linear>0</linear>
+        <quadratic>0</quadratic>
+      </attenuation>
+      <direction>-0.4 0.2 -1</direction>
+    </light>
+
+    <physics name="default_physics" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <!-- Floor slab (slightly larger than house footprint) -->
+    <model name="floor">
+      <static>true</static>
+      <pose>0 0 -0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col">
+          <geometry><box><size>13 11 0.1</size></box></geometry>
+        </collision>
+        <visual name="vis">
+          <geometry><box><size>13 11 0.1</size></box></geometry>
+          <material>
+            <ambient>0.9 0.9 0.9 1</ambient>
+            <diffuse>0.9 0.9 0.9 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Exterior walls: inner footprint 12 x 10 m, thickness 0.3 m, height 2.8 m -->
+    <!-- West wall -->
+    <model name="wall_west">
+      <static>true</static>
+      <pose>-6 0 1.4 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.3 10 2.8</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.3 10 2.8</size></box></geometry>
+          <material><diffuse>0.75 0.75 0.75 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- East wall -->
+    <model name="wall_east">
+      <static>true</static>
+      <pose>6 0 1.4 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.3 10 2.8</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.3 10 2.8</size></box></geometry>
+          <material><diffuse>0.75 0.75 0.75 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- North wall -->
+    <model name="wall_north">
+      <static>true</static>
+      <pose>0 5 1.4 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>12 0.3 2.8</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>12 0.3 2.8</size></box></geometry>
+          <material><diffuse>0.75 0.75 0.75 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- South wall with front door opening (1.2 m wide) -->
+    <model name="wall_south_left">
+      <static>true</static>
+      <pose>-3.3 -5 1.4 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>5.4 0.3 2.8</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>5.4 0.3 2.8</size></box></geometry>
+          <material><diffuse>0.75 0.75 0.75 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="wall_south_right">
+      <static>true</static>
+      <pose>3.3 -5 1.4 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>5.4 0.3 2.8</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>5.4 0.3 2.8</size></box></geometry>
+          <material><diffuse>0.75 0.75 0.75 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Central corridor: 1.6 m wide from y=-4 to y=5 formed by two long walls (0.2 m thick) with door gaps -->
+ <!-- West side of corridor (x = -0.8) -->
+<model name="corridor_west_segments">
+  <static>true</static>
+  <pose>-0.8 0 1.4 0 0 0</pose> <!-- sửa y từ 0.5 -> 0 -->
+  <link name="link">
+    <collision name="col_s1"><geometry><box><size>0.2 1.55 2.8</size></box></geometry><pose>0 -3.225 0 0 0 0</pose></collision>
+    <visual name="vis_s1"><geometry><box><size>0.2 1.55 2.8</size></box></geometry><pose>0 -3.225 0 0 0 0</pose></visual>
+
+    <collision name="col_s2"><geometry><box><size>0.2 3.1 2.8</size></box></geometry><pose>0 0 0 0 0 0</pose></collision>
+    <visual name="vis_s2"><geometry><box><size>0.2 3.1 2.8</size></box></geometry><pose>0 0 0 0 0 0</pose></visual>
+
+    <collision name="col_s3"><geometry><box><size>0.2 2.55 2.8</size></box></geometry><pose>0 3.725 0 0 0 0</pose></collision>
+    <visual name="vis_s3"><geometry><box><size>0.2 2.55 2.8</size></box></geometry><pose>0 3.725 0 0 0 0</pose></visual>
+  </link>
+</model>
+
+<!-- East side of corridor (x = +0.8) -->
+<model name="corridor_east_segments">
+  <static>true</static>
+  <pose>0.8 0 1.4 0 0 0</pose> <!-- sửa y từ 0.5 -> 0 -->
+  <link name="link">
+    <collision name="col_s1"><geometry><box><size>0.2 1.55 2.8</size></box></geometry><pose>0 -3.225 0 0 0 0</pose></collision>
+    <visual name="vis_s1"><geometry><box><size>0.2 1.55 2.8</size></box></geometry><pose>0 -3.225 0 0 0 0</pose></visual>
+
+    <collision name="col_s2"><geometry><box><size>0.2 3.1 2.8</size></box></geometry><pose>0 0 0 0 0 0</pose></collision>
+    <visual name="vis_s2"><geometry><box><size>0.2 3.1 2.8</size></box></geometry><pose>0 0 0 0 0 0</pose></visual>
+
+    <collision name="col_s3"><geometry><box><size>0.2 2.55 2.8</size></box></geometry><pose>0 3.725 0 0 0 0</pose></collision>
+    <visual name="vis_s3"><geometry><box><size>0.2 2.55 2.8</size></box></geometry><pose>0 3.725 0 0 0 0</pose></visual>
+  </link>
+</model>
+
+
+    <!-- Horizontal partitions at y=0 to form front/back rooms on each side of the corridor -->
+    <model name="partition_west_y0">
+      <static>true</static>
+      <pose>-3.4 0 1.4 0 0 0</pose>
+      <link name="link">
+        <!-- Split into two segments with 1.0 m central doorway -->
+        <collision name="col_left"><geometry><box><size>2.1 0.2 2.8</size></box></geometry><pose>-1.55 0 0 0 0 0</pose></collision>
+        <visual name="vis_left"><geometry><box><size>2.1 0.2 2.8</size></box></geometry><pose>-1.55 0 0 0 0 0</pose></visual>
+        <collision name="col_right"><geometry><box><size>2.1 0.2 2.8</size></box></geometry><pose>1.55 0 0 0 0 0</pose></collision>
+        <visual name="vis_right"><geometry><box><size>2.1 0.2 2.8</size></box></geometry><pose>1.55 0 0 0 0 0</pose></visual>
+      </link>
+    </model>
+
+    <model name="partition_east_y0">
+      <static>true</static>
+      <pose>3.4 0 1.4 0 0 0</pose>
+      <link name="link">
+        <!-- Split into two segments with 1.0 m central doorway -->
+        <collision name="col_left"><geometry><box><size>2.1 0.2 2.8</size></box></geometry><pose>-1.55 0 0 0 0 0</pose></collision>
+        <visual name="vis_left"><geometry><box><size>2.1 0.2 2.8</size></box></geometry><pose>-1.55 0 0 0 0 0</pose></visual>
+        <collision name="col_right"><geometry><box><size>2.1 0.2 2.8</size></box></geometry><pose>1.55 0 0 0 0 0</pose></collision>
+        <visual name="vis_right"><geometry><box><size>2.1 0.2 2.8</size></box></geometry><pose>1.55 0 0 0 0 0</pose></visual>
+      </link>
+    </model>
+
+
+  </world>
+</sdf>
