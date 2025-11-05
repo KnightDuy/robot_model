@@ -1,0 +1,1 @@
+/home/minh/robot_model-main/scripts/fix_covariance.py

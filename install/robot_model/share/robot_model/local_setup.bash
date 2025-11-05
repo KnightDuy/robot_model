@@ -1,0 +1,1 @@
+/home/minh/robot_model-main/build/robot_model/ament_cmake_environment_hooks/local_setup.bash

@@ -1,0 +1,6 @@
+Invoking command in '/home/minh/robot_model-main/build/robot_model': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/minh/robot_model-main -DCMAKE_INSTALL_PREFIX=/home/minh/robot_model-main/install/robot_model
+Invoked command in '/home/minh/robot_model-main/build/robot_model' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/minh/robot_model-main -DCMAKE_INSTALL_PREFIX=/home/minh/robot_model-main/install/robot_model
+Invoking command in '/home/minh/robot_model-main/build/robot_model': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/minh/robot_model-main/build/robot_model -- -j12 -l12
+Invoked command in '/home/minh/robot_model-main/build/robot_model' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/minh/robot_model-main/build/robot_model -- -j12 -l12
+Invoking command in '/home/minh/robot_model-main/build/robot_model': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/minh/robot_model-main/build/robot_model
+Invoked command in '/home/minh/robot_model-main/build/robot_model' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/minh/robot_model-main/build/robot_model
